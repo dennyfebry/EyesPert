@@ -4,7 +4,7 @@ $("document").ready(function () {
   //Nampilin gejala
   $.ajax({
     type: "GET",
-    url: "http://dennyfebrygo.com/bemo/eyespert/www/php/diagnosis.php",
+    url: "php/diagnosis.php",
     success: function (data) {
       // console.log(data);
       var pilihGejala = "";
@@ -36,7 +36,7 @@ $("document").ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "http://dennyfebrygo.com/bemo/eyespert/www/php/input-gejala.php",
+      url: "php/input-gejala.php",
       async: false,
       dataType: "json",
       global: false,

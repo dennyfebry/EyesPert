@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2019 pada 02.48
--- Versi server: 10.1.32-MariaDB
--- Versi PHP: 5.6.36
+-- Host: localhost:3306
+-- Generation Time: Nov 28, 2019 at 04:36 AM
+-- Server version: 10.1.43-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eyespert`
+-- Database: `dene4871_eyespert`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,20 +33,21 @@ CREATE TABLE `admin` (
   `nama` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `password` varchar(15) NOT NULL
+  `password` varchar(15) NOT NULL,
+  `akses` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama`, `email`, `username`, `password`) VALUES
-(1, 'Muhammad Fawwaz Izzuddin', 'mfawwaz13@gmail.com', 'mfawwazi', '12345');
+INSERT INTO `admin` (`id_admin`, `nama`, `email`, `username`, `password`, `akses`) VALUES
+(1, 'Muhammad Fawwaz Izzuddin', 'mfawwaz13@gmail.com', 'mfawwazi', '12345', 'admin');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gejala`
+-- Table structure for table `gejala`
 --
 
 CREATE TABLE `gejala` (
@@ -57,13 +58,13 @@ CREATE TABLE `gejala` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `gejala`
+-- Dumping data for table `gejala`
 --
 
 INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `nama_gejala`, `belief`) VALUES
 (1, 'G01', 'Ada bayangan hitam yang menghalangi, dan ikut bergerak saat melirik', 0.25),
 (2, 'G02', 'Ada bercak putih pada bagian hitam mata', 0.6),
-(3, 'G03', 'Berat badan turun', 0.8),
+(3, 'G03', 'Berat badan turun', 0.5),
 (4, 'G04', 'Bulu mata tumbuh kearah bola mata', 0.8),
 (5, 'G05', 'Keluar kotoran mata', 0.55),
 (6, 'G06', 'Lapang pandang menyempit', 0.9),
@@ -78,7 +79,7 @@ INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `nama_gejala`, `belief`) VALUE
 (15, 'G15', 'Memiliki riwayat keluarga glaukoma', 0.5),
 (16, 'G16', 'Memiliki riwayat keluarga retinitis pigmentosa', 0.8),
 (17, 'G17', 'Memiliki riwayat penggunaan lensa kontak', 0.5),
-(18, 'G18', 'Memiliki riwayat trauma ()', 0.5),
+(18, 'G18', 'Memiliki riwayat trauma (ada benda masuk atau cairan kimia)', 0.5),
 (19, 'G19', 'Merasa silau', 0.2),
 (20, 'G20', 'Mual dan muntah-muntah\r\n', 0.8),
 (21, 'G21', 'Muncul jaringan parut di kelopak mata\r\n', 0.85),
@@ -91,16 +92,16 @@ INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `nama_gejala`, `belief`) VALUE
 (28, 'G28', 'Penglihatan tidak membaik dengan menggunakan kacamata\r\n', 0.65),
 (29, 'G29', 'Penglihatan tunnel vision (seperti melihat dalam sedotan)\r\n', 0.85),
 (30, 'G30', 'Penurunan persepsi sensorik perifer (pada anggota gerak)\r\n', 0.2),
-(31, 'G31', 'Seperti melihat halo/pelangi saat melihat cahaya\r\n', 0.5),
-(32, 'G32', 'Sering buang air kecil\r\n', 0.8),
-(33, 'G33', 'Sering kesemutan, lapar, haus\r\n', 0.8),
+(31, 'G31', 'Seperti melihat halo/pelangi saat melihat cahaya\r\n', 0.6),
+(32, 'G32', 'Sering buang air kecil\r\n', 0.6),
+(33, 'G33', 'Sering kesemutan, lapar, haus\r\n', 0.6),
 (34, 'G34', 'Sering tersandung atau menabrak benda saat berjalan\r\n', 0.8),
 (35, 'G35', 'Sulit mengenali orang lain\r\n', 0.72);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengetahuan`
+-- Table structure for table `pengetahuan`
 --
 
 CREATE TABLE `pengetahuan` (
@@ -110,7 +111,7 @@ CREATE TABLE `pengetahuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengetahuan`
+-- Dumping data for table `pengetahuan`
 --
 
 INSERT INTO `pengetahuan` (`id`, `kode_gangguan`, `kode_gejala`) VALUES
@@ -172,7 +173,7 @@ INSERT INTO `pengetahuan` (`id`, `kode_gangguan`, `kode_gejala`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penyakit`
+-- Table structure for table `penyakit`
 --
 
 CREATE TABLE `penyakit` (
@@ -181,26 +182,27 @@ CREATE TABLE `penyakit` (
   `nama_gangguan` varchar(100) NOT NULL,
   `penanganan` text NOT NULL,
   `pengertian` text NOT NULL,
+  `tips` text NOT NULL,
   `gambar` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penyakit`
+-- Dumping data for table `penyakit`
 --
 
-INSERT INTO `penyakit` (`id_gangguan`, `kode_gangguan`, `nama_gangguan`, `penanganan`, `pengertian`, `gambar`) VALUES
-(1, 'P01', 'Katarak', 'Menggunakan kacamata, apabila penggunaan kacamata sudah tidak berpengaruh maka disarankan untuk melakukan operasi katarak', 'Katarak dapat didefinisikan sebagai segala jenis kekeruhan yang terjadi pada lensa mata', 'Mata Katarak.png'),
-(2, 'P02', 'Glaukoma', 'Konsumsi obat anti glaukoma, dan lakukan kontrol mata secara rutin. apabila kondisi semakin memburuk maka disarankan untuk melakukan operasi glaukoma', 'Glaukoma merupakan neuropati optik yang khas disertai terkait dengan penurunan lapang pandang akibat kerusakan papil nervus optikus, dimana tekanan intraokular merupakan faktor risiko penting', 'Mata Glaukoma.png'),
-(3, 'P03', 'Degenerasi Makula', 'konsumsi antioksidan yang cukup, makan dengan nutrisi yang seimbang, kurangi dan mulailah berhenti merokok, penyuntikan obat, dan jika kondisi semakin buruk maka disarankan untuk melakukan operasi vitrektomi', 'Degenerasi makula adalah penyebab utama hilangnya penglihatan permanen pada pasien usia lanjut. Penyakit ini akan menghilangkan kemampuan penglihatan sentral kita, menghilangkan detail, dan membuat kita melihat garis lurus menjadi bergelombang.', 'Mata Degenerasi.jpg'),
-(4, 'P04', 'Retinopati Diabetik', 'Kontrol diabetes secara teratur, lakukan penyuntikan obat, laser retina, dan apabila kondisi semakin buruk maka disarankan untuk operasi vitrektomi', 'Retinopati diabetik dapat didefinisikan sebagai suatu mikroangiopati progresif yang ditandai oleh kerusakan dan sumbatan pembuluh darah halus yang meliputi arteriol pre-kapiler, kapiler-kapiler, dan vena retina', 'Mata Retinopati.png'),
-(5, 'P05', 'Keratitis', 'Gunakan obat tetes mata sesuai rekomendasi dokter, dan bila kondisi semakin memburuk disarankan untuk operasi tambal kornea atau cangkok kornea.', 'Keratitis merupakan kelainan akibat terjadinya infiltrate sel radang pada kornea yang akan mengakibatkan kornea menjadi keruh, biasanya diklasifikasikan dalam lapisan yang terinfeksi seperti keratitis superficial, intertitisial dan profunda ', 'Mata Keratitis.jpg'),
-(6, 'P06', 'Trakoma', 'Konsumsi obat anti trakoma, dan apabila kondisi semakin buruk maka disarankan untuk operasi rekonstruksi kelopak mata', 'Trakoma adalah konjungtivitas kronis yang disebabkan oleh infeksi bakteri Chlamydia trachomatis. Penyakit ini adalah salah satu penyebab kebutaan di seluruh dunia khususnya di bagian Afrika Utara, Timur Tengah, Australia dan Asia Tenggara. Penyakit ini biasanya terjadi pada anak-anak yang berusia antara 3-6 tahun. ', 'Mata Trakoma.jpg'),
-(7, 'P07', 'Retinitis Pigmentosa', 'Lakukan rehabilitasi visual', 'Retinitis pigmentosa adalah suatu kemunduran (degenerasi) progresif pada retina yang mempengaruhi penglihatan pada tepi dan malam hari. Penyakit ini dapat mengakibatkan hilangnya penglihatan (buta) karena menyerang sel batang retina yang berfungsi mengatur penglihatan pada malam hari ', 'Mata Retinitis.jpg');
+INSERT INTO `penyakit` (`id_gangguan`, `kode_gangguan`, `nama_gangguan`, `penanganan`, `pengertian`, `tips`, `gambar`) VALUES
+(1, 'P01', 'Katarak', 'Menggunakan kacamata, apabila penggunaan kacamata sudah tidak berpengaruh maka disarankan untuk melakukan operasi katarak', 'Katarak dapat didefinisikan sebagai segala jenis kekeruhan yang terjadi pada lensa mata', '- Hindari paparan sinar UV (namun katarak adalah penyakit degeneratif, menghindari paparan sinar UV hanya untuk memperlambat proses kekeruhan lensa)', 'Mata Katarak.png'),
+(2, 'P02', 'Glaukoma', 'Konsumsi obat anti glaukoma, dan lakukan kontrol mata secara rutin. apabila kondisi semakin memburuk maka disarankan untuk melakukan operasi glaukoma', 'Glaukoma merupakan neuropati optik yang khas disertai terkait dengan penurunan lapang pandang akibat kerusakan papil nervus optikus, dimana tekanan intraokular merupakan faktor risiko penting', '- Melakukan screening apabila memiliki riwayat keluarga glaucoma/ diabetes melitus/ hipotensi', 'Mata Glaukoma.png'),
+(3, 'P03', 'Degenerasi Makula', 'konsumsi antioksidan yang cukup, makan dengan nutrisi yang seimbang, kurangi dan mulailah berhenti merokok, penyuntikan obat, dan jika kondisi semakin buruk maka disarankan untuk melakukan operasi vitrektomi', 'Degenerasi makula adalah penyebab utama hilangnya penglihatan permanen pada pasien usia lanjut. Penyakit ini akan menghilangkan kemampuan penglihatan sentral kita, menghilangkan detail, dan membuat kita melihat garis lurus menjadi bergelombang.', '- Hindari faktor pemicu stress oxidative seperti rokok </br>\r\n- Hindari paparan sinar UV langsung', 'Mata Degenerasi.jpg'),
+(4, 'P04', 'Retinopati Diabetik', 'Kontrol diabetes secara teratur, lakukan penyuntikan obat, laser retina, dan apabila kondisi semakin buruk maka disarankan untuk operasi vitrektomi', 'Retinopati diabetik dapat didefinisikan sebagai suatu mikroangiopati progresif yang ditandai oleh kerusakan dan sumbatan pembuluh darah halus yang meliputi arteriol pre-kapiler, kapiler-kapiler, dan vena retina', '- Pola hidup sehat </br>\r\n- kontrol gula darah </br>\r\n- olahraga teratur', 'Mata Retinopati.png'),
+(5, 'P05', 'Keratitis', 'Gunakan obat tetes mata sesuai rekomendasi dokter, dan bila kondisi semakin memburuk disarankan untuk operasi tambal kornea atau cangkok kornea.', 'Keratitis merupakan kelainan akibat terjadinya infiltrate sel radang pada kornea yang akan mengakibatkan kornea menjadi keruh, biasanya diklasifikasikan dalam lapisan yang terinfeksi seperti keratitis superficial, intertitisial dan profunda ', '- Menjaga kebersihan / higienisitas diri </br>\r\n- Mengganti soft lens dan cairannya sesuai jadwal </br>\r\n- Menggunakan pelindung mata saat bekerja seperti mengelas </br>\r\n- Tidak menggunakan obat tetes sembarangan / tanpa rekomendasi dokter ', 'Mata Keratitis.jpg'),
+(6, 'P06', 'Trakoma', 'Konsumsi obat anti trakoma, dan apabila kondisi semakin buruk maka disarankan untuk operasi rekonstruksi kelopak mata', 'Trakoma adalah konjungtivitas kronis yang disebabkan oleh infeksi bakteri Chlamydia trachomatis. Penyakit ini adalah salah satu penyebab kebutaan di seluruh dunia khususnya di bagian Afrika Utara, Timur Tengah, Australia dan Asia Tenggara. Penyakit ini biasanya terjadi pada anak-anak yang berusia antara 3-6 tahun. ', '-	Menjaga kebersihan/ higienisitas diri -	Penyediaan air bersih -	Cuci tangan', 'Mata Trakoma.jpg'),
+(7, 'P07', 'Retinitis Pigmentosa', 'Lakukan rehabilitasi visual', 'Retinitis pigmentosa adalah suatu kemunduran (degenerasi) progresif pada retina yang mempengaruhi penglihatan pada tepi dan malam hari. Penyakit ini dapat mengakibatkan hilangnya penglihatan (buta) karena menyerang sel batang retina yang berfungsi mengatur penglihatan pada malam hari ', '- Screening keluarga apabila terdapat riwayat retinitis pigmentosa </br>\r\n- Konseling genetika', 'Mata Retinitis.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tentang`
+-- Table structure for table `tentang`
 --
 
 CREATE TABLE `tentang` (
@@ -217,7 +219,7 @@ CREATE TABLE `tentang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tentang`
+-- Dumping data for table `tentang`
 --
 
 INSERT INTO `tentang` (`id_tentang`, `nama_tentang`, `jenis_kelamin`, `pekerjaan`, `sip_npm`, `tt_lahir`, `alamat_rumah`, `no_telp`, `nama_instansi`, `foto`) VALUES
@@ -229,20 +231,20 @@ INSERT INTO `tentang` (`id_tentang`, `nama_tentang`, `jenis_kelamin`, `pekerjaan
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indeks untuk tabel `gejala`
+-- Indexes for table `gejala`
 --
 ALTER TABLE `gejala`
   ADD PRIMARY KEY (`id_gejala`),
   ADD UNIQUE KEY `kode_gejala` (`kode_gejala`);
 
 --
--- Indeks untuk tabel `pengetahuan`
+-- Indexes for table `pengetahuan`
 --
 ALTER TABLE `pengetahuan`
   ADD PRIMARY KEY (`id`),
@@ -250,7 +252,7 @@ ALTER TABLE `pengetahuan`
   ADD KEY `gejala_kode_gejala` (`kode_gejala`);
 
 --
--- Indeks untuk tabel `penyakit`
+-- Indexes for table `penyakit`
 --
 ALTER TABLE `penyakit`
   ADD PRIMARY KEY (`id_gangguan`),
@@ -258,17 +260,51 @@ ALTER TABLE `penyakit`
   ADD UNIQUE KEY `kode_gangguan_2` (`kode_gangguan`);
 
 --
--- Indeks untuk tabel `tentang`
+-- Indexes for table `tentang`
 --
 ALTER TABLE `tentang`
   ADD PRIMARY KEY (`id_tentang`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `pengetahuan`
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `gejala`
+--
+ALTER TABLE `gejala`
+  MODIFY `id_gejala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `pengetahuan`
+--
+ALTER TABLE `pengetahuan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `penyakit`
+--
+ALTER TABLE `penyakit`
+  MODIFY `id_gangguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tentang`
+--
+ALTER TABLE `tentang`
+  MODIFY `id_tentang` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pengetahuan`
 --
 ALTER TABLE `pengetahuan`
   ADD CONSTRAINT `gejala_kode_gejala` FOREIGN KEY (`kode_gejala`) REFERENCES `gejala` (`kode_gejala`),

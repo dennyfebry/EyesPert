@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 11 Agu 2019 pada 05.40
--- Versi Server: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Host: localhost:3306
+-- Generation Time: Nov 28, 2019 at 04:36 AM
+-- Server version: 10.1.43-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eyespert`
+-- Database: `dene4871_eyespert`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id_admin`, `nama`, `email`, `username`, `password`, `akses`) VALUES
@@ -45,7 +47,7 @@ INSERT INTO `admin` (`id_admin`, `nama`, `email`, `username`, `password`, `akses
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gejala`
+-- Table structure for table `gejala`
 --
 
 CREATE TABLE `gejala` (
@@ -56,7 +58,7 @@ CREATE TABLE `gejala` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `gejala`
+-- Dumping data for table `gejala`
 --
 
 INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `nama_gejala`, `belief`) VALUES
@@ -99,7 +101,7 @@ INSERT INTO `gejala` (`id_gejala`, `kode_gejala`, `nama_gejala`, `belief`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengetahuan`
+-- Table structure for table `pengetahuan`
 --
 
 CREATE TABLE `pengetahuan` (
@@ -109,7 +111,7 @@ CREATE TABLE `pengetahuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pengetahuan`
+-- Dumping data for table `pengetahuan`
 --
 
 INSERT INTO `pengetahuan` (`id`, `kode_gangguan`, `kode_gejala`) VALUES
@@ -171,7 +173,7 @@ INSERT INTO `pengetahuan` (`id`, `kode_gangguan`, `kode_gejala`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penyakit`
+-- Table structure for table `penyakit`
 --
 
 CREATE TABLE `penyakit` (
@@ -185,7 +187,7 @@ CREATE TABLE `penyakit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `penyakit`
+-- Dumping data for table `penyakit`
 --
 
 INSERT INTO `penyakit` (`id_gangguan`, `kode_gangguan`, `nama_gangguan`, `penanganan`, `pengertian`, `tips`, `gambar`) VALUES
@@ -200,7 +202,7 @@ INSERT INTO `penyakit` (`id_gangguan`, `kode_gangguan`, `nama_gangguan`, `penang
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tentang`
+-- Table structure for table `tentang`
 --
 
 CREATE TABLE `tentang` (
@@ -217,7 +219,7 @@ CREATE TABLE `tentang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tentang`
+-- Dumping data for table `tentang`
 --
 
 INSERT INTO `tentang` (`id_tentang`, `nama_tentang`, `jenis_kelamin`, `pekerjaan`, `sip_npm`, `tt_lahir`, `alamat_rumah`, `no_telp`, `nama_instansi`, `foto`) VALUES
@@ -268,30 +270,46 @@ ALTER TABLE `tentang`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id_admin` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `gejala`
 --
 ALTER TABLE `gejala`
-  MODIFY `id_gejala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_gejala` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- AUTO_INCREMENT for table `pengetahuan`
 --
 ALTER TABLE `pengetahuan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
 -- AUTO_INCREMENT for table `penyakit`
 --
 ALTER TABLE `penyakit`
   MODIFY `id_gangguan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT for table `tentang`
+--
+ALTER TABLE `tentang`
+  MODIFY `id_tentang` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `pengetahuan`
+-- Constraints for table `pengetahuan`
 --
 ALTER TABLE `pengetahuan`
   ADD CONSTRAINT `gejala_kode_gejala` FOREIGN KEY (`kode_gejala`) REFERENCES `gejala` (`kode_gejala`),
   ADD CONSTRAINT `penyakit_kode_gangguan` FOREIGN KEY (`kode_gangguan`) REFERENCES `penyakit` (`kode_gangguan`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

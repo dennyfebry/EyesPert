@@ -4,7 +4,7 @@ $("document").ready(function () {
   console.log("ID Penyakit =", urlParams.get("penyakitID"));
   $.ajax({
     type: "POST",
-    url: "http://dennyfebrygo.com/bemo/eyespert/www/php/penyakit.php",
+    url: "php/penyakit.php",
     data: { penyakitID: urlParams.get("penyakitID") },
     // error: function (xhr, status, error) {
     //     console.log(xhr);

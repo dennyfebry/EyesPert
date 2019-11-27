@@ -4,7 +4,7 @@ $("document").ready(function () {
   // console.log('ID Penyakit =', urlParams.get('penyakitID'));
   $.ajax({
     type: "GET",
-    url: "http://dennyfebrygo.com/bemo/eyespert/www/php/tentang.php",
+    url: "php/tentang.php",
     // data: { tentangID: urlParams.get('penyakitID') },
     // error: function (xhr, status, error) {
     //     console.log(xhr);
@@ -22,7 +22,7 @@ $("document").ready(function () {
         tentang += "<center>";
         tentang += "<h6>" + data[i].pekerjaan + "</h6>";
         tentang +=
-          "<img src='http://dennyfebrygo.com/bemo/eyespert/www/img/Tentang/" +
+          "<img src='img/Tentang/" +
           data[i].foto +
           "' class='profilewidth' alt='" +
           data[i].nama_tentang +

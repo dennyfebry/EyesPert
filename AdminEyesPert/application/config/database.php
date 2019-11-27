@@ -75,10 +75,6 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	// 'hostname' => 'localhost',
-	// 'username' => 'dene4871_denny',
-	// 'password' => 'inwardco24',
-	// 'database' => 'dene4871_eyespert',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',

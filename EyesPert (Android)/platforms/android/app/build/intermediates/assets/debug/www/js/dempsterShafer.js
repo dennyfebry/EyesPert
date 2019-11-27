@@ -13,7 +13,7 @@ $("document").ready(function () {
 
   $.ajax({
     type: "POST",
-    url: "http://dennyfebrygo.com/bemo/eyespert/www/php/detail-penyakit.php",
+    url: "php/detail-penyakit.php",
     async: false,
     dataType: "json",
     global: false,
@@ -53,7 +53,7 @@ $("document").ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "http://dennyfebrygo.com/bemo/eyespert/www/php/input-gejala.php",
+      url: "php/input-gejala.php",
       async: false,
       dataType: "json",
       global: false,
