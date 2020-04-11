@@ -1,13 +1,9 @@
 <?php
-$servername = "localhost";
-$username = "dene4871_denny";
-$password = "inwardco24";
-$database = "dene4871_eyespert";
 
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "eyespert";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "eyespert";
 
 $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
